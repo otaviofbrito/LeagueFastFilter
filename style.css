@@ -1,0 +1,62 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+}
+
+ul{
+  list-style: none;
+}
+
+body{
+  font-family: Roboto, sans-serif;
+}
+
+
+header {
+  max-width: 1120px;
+  margin: 2rem auto 2rem auto;
+  text-align: center;
+}
+section{
+  max-width: 920px;
+  margin: auto;
+}
+.input_section{
+  margin: auto auto 4rem auto;
+  background: rgb(211, 104, 104);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.match_item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(255, 184, 168);
+  padding: 1rem;
+  border-radius: 0.2rem;
+}
+
+.match_item .match_build ul{
+  display: flex;
+  gap: 0.2rem;
+}
+
+.match_item .match_spells ul {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.match_item .match_champ img{
+  width: 4rem;
+}
+.match_item .match_build ul li img,
+.match_item .match_spells ul li img{
+  width: 2.5rem;
+}
