@@ -8,7 +8,7 @@ const Form = {
   
 
   async getPlayerInfo(){
-    let playerUrl = `https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${Form.playerName}?api_key=RGAPI-df6f50e8-a9dc-4525-b871-0808cd2b92c9`
+    let playerUrl = `https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${Form.playerName}?api_key=`
     
     try {
       let res = await fetch(playerUrl)
