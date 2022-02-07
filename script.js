@@ -1,4 +1,4 @@
-const api_Key = 'RGAPI-20c3afac-f298-4331-aaed-48a2b8a3d302'
+const api_Key = ''
 
 const Form = {
 
