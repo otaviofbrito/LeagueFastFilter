@@ -1,18 +1,46 @@
-const api_Key = ''
+const api_Key = 'RGAPI-5bc29a38-e274-4121-ba4c-b2df6ea95db5'
+
+
+runForm = {
+  playerName: document.querySelector('input#player_name'),
+  regionServer: document.querySelector('select#regions'),
+
+  getvalues(){
+    return {
+      playerName: runForm.playerName.value,
+      regionServer: runForm.regionServer.value
+    }
+  },
+
+     submit(event){
+     event.preventDefault()
+  
+     try {
+      const {playerName} = runForm.getvalues()
+      Form.testinfo(playerName)  
+      Form.renderMatches()
+     } catch(error){
+       alert(error.message)
+     }
+   }
+}
+
+
+
 
 const Form = {
 
-  playerName: document.querySelector('input#player_name').value,
-  regionServer: document.querySelector('select#regions').value,
-
-  
+  testinfo(infos1){
+    let playerUrl = `https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${infos1}?api_key=${api_Key}`
+    console.log(infos1)
+    return playerUrl
+  },
 
   async getPlayerInfo(){
-    let playerUrl = `https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${Form.playerName}?api_key=${api_Key}`
+    let playerUrl = Form.testinfo()
     
     try {
       let res = await fetch(playerUrl)
-
       return await res.json()
     } catch (error) {
       console.log(error)
@@ -115,30 +143,8 @@ const Form = {
  
 
 
-},
-
-
-runForm = {
-
-  clearFields() {
-    Form.playerName.value = ''
-   },
-  
-   submit(event){
-     event.preventDefault()
-  
-     try {
-      Form.clearFields()
-  
-  
-     } catch(error){
-       alert(error.message)
-     }
-   }
 }
 
-App = {
-  init() {
-    Form.renderMatches()
-  }
-}
+
+
+
