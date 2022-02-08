@@ -1,4 +1,4 @@
-const api_Key = ''
+const api_Key = 'RGAPI-5bc29a38-e274-4121-ba4c-b2df6ea95db5'
 
 const Form = {
 
@@ -67,10 +67,78 @@ const Form = {
 
  async renderMatches(){
     let matches = await Form.matchInfos()
-    let test = matches[0]
-   console.log(test)
- }
+    let {puuid} = await Form.renderPlayerUUID()
+    let html = ''
+    setTimeout(() => {
+      matches.forEach(mtch => {
+        let player = mtch.info.participants.find(m => m.puuid === puuid)
+        console.log(player)
+
+
+        if(player.item === 0){
+          console.log(teste)
+        }
+
+        let htmlSegment = 
+        `
+        <div class="match_item win_${player.win}">
+        <div class="match_champ"><img src="https://ddragon.leagueoflegends.com/cdn/12.3.1/img/champion/${player.championName}.png" alt="champion image"></div>
+        <div class="match_kda">${player.kills}<span>/</span>${player.deaths}<span>/</span>${player.assists}</div>
+        <div class="match_build">
+          <ul>
+            <li class="item"><img src="https://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${player.item0}.png" alt=''></li>
+            <li class="item"><img src="https://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${player.item1}.png" alt=''></li>
+            <li class="item"><img src="https://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${player.item2}.png" alt=''></li>
+            <li class="item"><img src="https://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${player.item3}.png" alt=''></li>
+            <li class="item"><img src="https://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${player.item4}.png" alt=''></li>
+            <li class="item"><img src="https://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${player.item5}.png" alt=''></li>
+            <li class="trinket"><img src="https://ddragon.leagueoflegends.com/cdn/12.3.1/img/item/${player.item6}.png" alt="trinket" alt=''></li>
+          </ul>
+        </div>
+        <div class="cs">${player.neutralMinionsKilled + player.totalMinionsKilled}</div>
+        <div class="match_spells">
+          <ul>
+            <li class="spell"><img src="/assets/spells/Summoner${player.summoner1Id}.png" alt=""></li>
+            <li class="spell"><img src="/assets/spells/Summoner${player.summoner2Id}.png" alt=""></li>
+          </ul>
+        </div>
+      </div>
+        `
+        
+        html += htmlSegment
+        let matchItem = document.querySelector('.history_section')
+        matchItem.innerHTML = html
+      })
+    }, 5000)
+    
+ },
+ 
+
+
+},
+
+
+runForm = {
+
+  clearFields() {
+    Form.playerName.value = ''
+   },
+  
+   submit(event){
+     event.preventDefault()
+  
+     try {
+      Form.clearFields()
+  
+  
+     } catch(error){
+       alert(error.message)
+     }
+   }
 }
 
-
-Form.renderMatches()
+App = {
+  init() {
+    Form.renderMatches()
+  }
+}
